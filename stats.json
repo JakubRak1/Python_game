@@ -1,0 +1,75 @@
+{
+  "unit": [
+    {
+      "enemy": {
+        "id1": {
+          "name": "goblin",
+          "max_health": 20,
+          "attact": 10,
+          "ability_to_heal": false,
+          "g_exp": 15
+        },
+        "id2": {
+          "name": "orc",
+          "max_health": 35,
+          "attact": 20,
+          "ability_to_heal": false,
+          "g_exp": 30
+        },
+        "id3": {
+          "name": "troll",
+          "max_health": 50,
+          "attact": 25,
+          "ability_to_heal": true,
+          "g_exp": 50
+        },
+        "id4": {
+          "name": "demon",
+          "max_health": 80,
+          "attact": 40,
+          "ability_to_heal": false,
+          "g_exp": 70
+        },
+        "id5": {
+          "name": "devil",
+          "max_health": 120,
+          "attact": 35,
+          "ability_to_heal": true,
+          "g_exp": 100
+        }
+      },
+      "weapon": {
+        "id11": {
+          "name": "Two handed axe",
+          "dmg": 35,
+          "health": 0
+        },
+        "id12": {
+          "name": "Big stone hammer",
+          "dmg": 20,
+          "health": 0
+        },
+        "id13": {
+          "name": "Sword of light",
+          "dmg": 10,
+          "health": 0
+        },
+        "id14": {
+          "name": "Two handed Shield",
+          "dmg": 0,
+          "health": 20
+        },
+        "id21": {
+          "name": "Bow from sylvanas",
+          "dmg": 15,
+          "health": 0
+        },
+        "id22": {
+          "name": "Town crossbow",
+          "dmg": 35,
+          "health": 0
+        }
+      }
+    }
+  ]
+}
