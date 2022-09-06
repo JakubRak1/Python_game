@@ -1,4 +1,4 @@
-from objects_constructor import Unit, Weapon
+from objects_constructor import UnitEnemy, UnitPlayer, UnitWeapon
 from creator import create_random_enemy, create_random_weapon, open_and_load_db
 from colorama import Fore, Style, init
 import logging, sys
@@ -12,7 +12,7 @@ def try_to_enable_debug_mode () -> None :
         logging.basicConfig(level=logging.ERROR, format='%(asctime)s:%(levelname)s:%(message)s')
 
 
-def conduct_player_turn (player: Unit, enemy: Unit) -> None:
+def conduct_player_turn (player: UnitPlayer, enemy: UnitEnemy) -> None:
     #Allow user to play his turn
     logging.debug(f'Value of boolan enemy and player hp > 0 {enemy.hp > 0 and player.hp > 0}')
     # Check if player and enemy are alive (hp > 0)
@@ -48,7 +48,7 @@ def conduct_player_turn (player: Unit, enemy: Unit) -> None:
                     play_game()
 
 
-def conduct_enemy_turn (player: Unit, enemy: Unit) -> None:
+def conduct_enemy_turn (player: UnitPlayer, enemy: UnitEnemy) -> None:
     # Conduct enemy object play turn
     logging.debug(f'Value of boolan enemy and player hp > 0 {enemy.hp > 0 and player.hp > 0}')
     # Check if player and enemy are alive (hp > 0)    
@@ -57,14 +57,14 @@ def conduct_enemy_turn (player: Unit, enemy: Unit) -> None:
         # Checking enemy HP if it's drop bellow 20% and enemy has ability to heal then enemy will heal instead od attacking player
         if(enemy.a_heal and enemy.hp <= enemy.maxhp *0.2):
             # Run function of healing dmg by enemy from object_contructor.py heal_val is 5% of maxhp and print returning string
-            print(enemy.heal_dmg(int(enemy.maxhp*0.05)))
+            print(enemy.get_heal_dmg_info(int(enemy.maxhp*0.05)))
         # If enemy dont heal himself he deals enemy.dmg value to player
         else:
             # Run function of reciving dmg by player from objects_contructor.py and prints returning string
-            print(player.take_dmg(enemy.dmg))    
+            print(player.take_dmg_info(enemy.dmg))    
 
 
-def conduct_fight_with_enemy (player: Unit, enemy: Unit) -> bool:
+def conduct_fight_with_enemy (player: UnitPlayer, enemy: UnitEnemy) -> bool:
     # Conduct fight until one of object hp drops to 0
     while True:
     # Infinite loop, until one of objects have health = 0
@@ -98,25 +98,25 @@ def play_game() -> None :
     name_player = input(str())
     logging.debug(f"Value of input as name of player: {name_player}")
     # Create class instance with starting deafult value and name taken from input
-    player: Unit = Unit(0, name_player[0].upper()+name_player[1:], 125, 205, True, 0)
+    player: UnitPlayer = UnitPlayer(0, name_player[0].upper()+name_player[1:], 125, 205)
     logging.debug(player)
     print(f"{Fore.CYAN}Ah, so you are {player.name} your currently stats are:{Style.RESET_ALL} \n{Fore.GREEN}{player}{Style.RESET_ALL} \n{Fore.CYAN}It's time to face your first enemy{Style.RESET_ALL}")
     # Infinite loop to always pick random enemy and initilize fight with him and result of fight
     while True:
         # Set enemy object by runing function create_random_enemy from creator.py
-        enemy: Unit = create_random_enemy(data_base)
-        print(f"{Fore.RED}New enemy is: {enemy.get_enemy_info()}{Style.RESET_ALL}")
+        enemy: UnitEnemy = create_random_enemy(data_base)
+        print(f"{Fore.RED}New enemy is: {enemy}{Style.RESET_ALL}")
         logging.debug(f'Value of next enemy is : {enemy}')
         # Create var fight_resault and settting bool value as result of fight_with_enemy function 
         fight_resault: bool = conduct_fight_with_enemy(player, enemy)
-        logging.debug(f'{Fore.RED}Value of whole function fight_with_enemy: {fight_resault}{Style.RESET_ALL}')
+        logging.debug(f'Value of whole function fight_with_enemy: {fight_resault}')
         # Check if player wins fight or lose
         if (fight_resault == True):
             print(f'{Fore.CYAN}{player.name} has slain {enemy.name}. Congratulations !!{Style.RESET_ALL}')
             # Run function gain_exp from objects_constructor.py
             player.gain_exp(enemy.g_exp)
             # Set weapon object by runing function create_random_weapon from creator.py
-            weapon: Weapon = create_random_weapon(data_base)
+            weapon: UnitWeapon = create_random_weapon(data_base)
             logging.debug(f'Weapon object is: {weapon}')
             print(f"{Fore.YELLOW}You have found {weapon.name} of stats dmg: {weapon.dmg} and hp: {weapon.hp}{Style.RESET_ALL}")
             # Infinite loop until user input is equal to 'equip' or 'noting'
