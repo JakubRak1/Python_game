@@ -1,4 +1,4 @@
-from objects_constructor import UnitEnemy, UnitPlayer, UnitWeapon
+from objects_constructor import UnitEnemy, UnitPlayer, Weapon
 from creator import create_random_enemy, create_random_weapon, open_and_load_db
 from colorama import Fore, Style, init
 import logging, sys
@@ -116,7 +116,7 @@ def play_game() -> None :
             # Run function gain_exp from objects_constructor.py
             player.gain_exp(enemy.g_exp)
             # Set weapon object by runing function create_random_weapon from creator.py
-            weapon: UnitWeapon = create_random_weapon(data_base)
+            weapon: Weapon = create_random_weapon(data_base)
             logging.debug(f'Weapon object is: {weapon}')
             print(f"{Fore.YELLOW}You have found {weapon.name} of stats dmg: {weapon.dmg} and hp: {weapon.hp}{Style.RESET_ALL}")
             # Infinite loop until user input is equal to 'equip' or 'noting'

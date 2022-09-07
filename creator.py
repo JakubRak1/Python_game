@@ -1,5 +1,5 @@
 import numpy as np, logging, json
-from objects_constructor import UnitEnemy, UnitWeapon
+from objects_constructor import UnitEnemy, Weapon
 
 
 def open_and_load_db (db_json: str) -> dict:
@@ -21,7 +21,7 @@ def create_random_enemy(db: list) -> UnitEnemy:
             current_enemy :dict = entry['enemy'][f'id{id}']
             logging.debug(f'Dictonary of new enemy is {current_enemy}')
             # Set enemy_unit as object by id and current_enemy
-            enemy_unit: UnitEnemy = UnitEnemy(int(id), current_enemy['name'], current_enemy['max_health'], current_enemy['attact'], current_enemy['ability_to_heal'], current_enemy['g_exp'])
+            enemy_unit: UnitEnemy = UnitEnemy(int(id), current_enemy['name'], current_enemy['max_health'], current_enemy['dmg'], current_enemy['ability_to_heal'], current_enemy['g_exp'])
             logging.debug(f'Object value of new enemy is {enemy_unit}')
         return enemy_unit
     # Wrong id
@@ -30,7 +30,7 @@ def create_random_enemy(db: list) -> UnitEnemy:
         quit()
 
 
-def create_random_weapon(db: list) -> UnitWeapon :
+def create_random_weapon(db: list) -> Weapon :
 # Chose random from db weapon and returning it
     #Random piced type of weapon 1 - close combat, 2 - distance combat
     weapon_type: int = np.random.randint(1,3)
@@ -54,7 +54,7 @@ def create_random_weapon(db: list) -> UnitWeapon :
             current_weapon :dict = entry['weapon']['id'+str(weapon_type)+str(id)]
             logging.debug(f'Dictonary of new weapon is {current_weapon}')
             # Set weapon_unit as object by id and current_enemy
-            weapon_unit: UnitWeapon = UnitWeapon(int(str(weapon_type)+str(id)), current_weapon['name'], current_weapon['dmg'], current_weapon['health'])
+            weapon_unit: Weapon = Weapon(int(str(weapon_type)+str(id)), current_weapon['name'], current_weapon['dmg'], current_weapon['health'])
             logging.debug(f'Object value of new weapon is {weapon_type}')
         return weapon_unit
     else: 

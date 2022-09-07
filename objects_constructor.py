@@ -10,11 +10,13 @@ class Unit:
         self.dmg: int = dmg
     
 
-class UnitWeapon(Unit):
+class Weapon():
     # Class refers only to weapon object
     def __init__(self, id: int, name: str, dmg: int, hp: int) -> None:
         # Constructor to create UnitWeapon object 
-        super().__init__(id, name, dmg)
+        self.id: int= id
+        self.name: str = name
+        self.dmg: int = dmg
         self.hp: int = hp
 
 

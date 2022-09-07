@@ -5,35 +5,35 @@
         "id1": {
           "name": "goblin",
           "max_health": 20,
-          "attact": 10,
+          "dmg": 10,
           "ability_to_heal": false,
           "g_exp": 15
         },
         "id2": {
           "name": "orc",
           "max_health": 35,
-          "attact": 20,
+          "dmg": 20,
           "ability_to_heal": false,
           "g_exp": 30
         },
         "id3": {
           "name": "troll",
           "max_health": 50,
-          "attact": 25,
+          "dmg": 25,
           "ability_to_heal": true,
           "g_exp": 50
         },
         "id4": {
           "name": "demon",
           "max_health": 80,
-          "attact": 40,
+          "dmg": 40,
           "ability_to_heal": false,
           "g_exp": 70
         },
         "id5": {
           "name": "devil",
           "max_health": 120,
-          "attact": 35,
+          "dmg": 35,
           "ability_to_heal": true,
           "g_exp": 100
         }
